@@ -10,5 +10,9 @@
 
 * console.error
 
-##### Next
-(Cap 13)[https://www.udemy.com/course/leaflet-crea-mapas-interactivos-para-la-web/learn/lecture/36606914#overview]
+#### Next
+##### JS
+(Cap 14)[https://www.udemy.com/course/leaflet-crea-mapas-interactivos-para-la-web/learn/lecture/36607004#overview]
+
+##### Leaflet
+(Cap 37)[https://www.udemy.com/course/leaflet-crea-mapas-interactivos-para-la-web/learn/lecture/36623530#overview]
