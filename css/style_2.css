@@ -14,3 +14,7 @@ html, body {
   cursor: pointer;
   font-weight: bold;
 }
+
+.hidden {
+  display: none;
+}

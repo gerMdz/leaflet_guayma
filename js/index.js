@@ -45,8 +45,17 @@ map.on('moveend', (evento) => {
   console.log(bounds)
 })
 
-const mover = (latlng) => {
-  map.flyTo(latlng, 17)
+const mover = (latlng, nombre) => {
+
+const [lat, lng] = latlng
+  console.log(latlng)
+map.setView(latlng, 17)
+  msj = document.querySelector('#msj')
+  msj.classList.remove('hidden')
+  msj.innerText = `Coordinadas son
+  Latitud: ${lat}
+  Longitud: ${lng}
+  y es de ${nombre}`;
 }
 
 const clearPlaceLi = () => {
@@ -60,7 +69,7 @@ const clearPlaceLi = () => {
 const lugares = () => {
     const ul = document.createElement("ul");
     ul.classList.add("list-group")
-    sidebar.append(ul)
+    sidebar.prepend(ul)
     places.forEach( lugar => {
       const li = document.createElement("li")
       li.innerText = lugar.nombre
@@ -70,7 +79,7 @@ const lugares = () => {
       li.addEventListener('click', () => {
         clearPlaceLi()
         li.classList.add("active")
-        mover(lugar.coordenadas)
+        mover(lugar.coordenadas, lugar.nombre)
       })
     })
 }

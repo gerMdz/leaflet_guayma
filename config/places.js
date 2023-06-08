@@ -4,7 +4,7 @@ const places = [
   {nombre: 'San Carlos', coordenadas: [-34.0753663960754, -69.0977010128957]},
   {nombre: 'Las Heras', coordenadas: [-32.5247668775446, -69.26717572394]},
   {nombre: 'Lavalle', coordenadas: [-32.582585367751, -67.8890727049671]},
-  {nombre: 'Capital', coordenadas: [-32.8806541047985, -68.8921657602392]},
+  {nombre: 'Capital', coordenadas: [-32.8869689020603,-68.8543075227812]},
   {nombre: 'Santa Rosa', coordenadas: [-33.6177946030973, -67.9636620466005]},
   {nombre: 'Rivadavia', coordenadas: [-33.419707109754, -68.6121759957283]},
   {nombre: 'Tupungato', coordenadas: [-33.2915070191465, -69.3019667535127]},
@@ -16,7 +16,8 @@ const places = [
   {nombre: 'Maipú', coordenadas: [-32.9775099458466, -68.6521739904164]},
   {nombre: 'Godoy Cruz', coordenadas: [-32.9297600556689, -68.8890844545155]},
   {nombre: 'Junín', coordenadas: [-33.1462075241433, -68.4803420038399]},
-  {nombre: 'San Martín', coordenadas: [-32.9088785853185, -68.2844229443887]}
+  {nombre: 'San Martín', coordenadas: [-33.0857149342167,-68.4809496647904]}
+
 ]
 
 console.log(places)
