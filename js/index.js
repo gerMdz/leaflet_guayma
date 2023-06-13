@@ -39,7 +39,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 const latlng =
   map.on('click', (evento) => {
     const {lat, lng} = evento.latlng;
-    console.log(lat, lng)
+    // console.log(lat, lng)
   })
 
 map.on('zoomend', (evento) => {
@@ -68,16 +68,16 @@ map.on('moveend', (evento) => {
   // const center = evento.target._lastCenter
   const centerMap = map.getCenter();
 
-  console.log('el centro ' + centerMap)
+  // console.log('el centro ' + centerMap)
   const bounds = map.getBounds();
 
-  console.log(bounds)
+  // console.log(bounds)
 })
 
 const mover = (latlng, nombre) => {
 
   const [lat, lng] = latlng
-  console.log(latlng)
+  // console.log(latlng)
   map.setView(latlng, 17)
   msj = document.querySelector('#msj')
   msj.classList.remove('hidden')
@@ -92,7 +92,7 @@ const mover = (latlng, nombre) => {
 
   marca.on('dragend', () => {
     const newCoor = marca.getLatLng();
-    console.log('dd' + newCoor)
+    // console.log('dd' + newCoor)
     msj.innerText = `Se movió a
   Latitud: ${newCoor}
   `;
@@ -136,14 +136,14 @@ const ico = L.icon({
   popupAnchor: [-3, -76],
 });
 
-const marcador_ciudad = L.marker([-32.8869689020603, -68.8543075227812], {
+const marcador_ciudad = L.marker([-32.919909400738334, -68.85367886061664], {
   icon: ico,
   draggable: true
 }).addTo(map)
 
 marcador_ciudad.on('dragend', () => {
   const newCoor = marcador_ciudad.getLatLng();
-  console.log('dd' + newCoor)
+  // console.log('dd' + newCoor)
   msj.innerText = `Se movió a
   Latitud: ${newCoor}
   `;
@@ -187,7 +187,18 @@ const path4 = {
 
 }
 
-const redondo =  L.circle([-32.89, -68.85], {radius: 200, ...path}).addTo(map);
+const path5 = {
+  stroke: true,
+  color: 'blue',
+  width: '5',
+  opacity: 0.8,
+  fillColor: 'red',
+  fillOpacity: 0.3,
+  dashArray: '5, 10'
+
+}
+
+const redondo = L.circle([-32.89, -68.85], {radius: 200, ...path}).addTo(map);
 // const redondo2 =  L.circle([-32.89, -68.85], {radius: 400, ...path2}).addTo(map);
 
 const donde = redondo.getBounds();
@@ -205,12 +216,12 @@ map.fitBounds(donde)
 
 redondo.on('mouseover', () => {
   redondo.setStyle(path2)
-  console.log(path2)
+  // console.log(path2)
 })
 
 redondo.on('mouseout', () => {
   redondo.setStyle(path)
-  console.log(path)
+  // console.log(path)
 })
 
 
@@ -221,6 +232,9 @@ marcador_redondo.setRadius(100)
 const latlngs = [
   [-32.88, -68.84],
   [-32.90, -68.86],
+  [-32.89, -68.58],
+  [-32.91, -68.78],
+  [-32.89, -68.72],
 
 
 ];
@@ -242,30 +256,51 @@ const polyline = L.polyline(latlngs, {
 
 const ext_poly = polyline.getBounds();
 
-map.fitBounds(ext_poly)
+map.fitBounds(ext_poly);
 
 
+// setTimeout(() => {
+//   polyline.addLatLng(latlngs_ext[0])
+//   const agrega = polyline.getBounds();
+//   map.fitBounds(agrega)
+// }, 3000
+// )
+// setTimeout(() => {
+//   polyline.addLatLng(latlngs_ext[1])
+//   const agrega = polyline.getBounds();
+//   map.fitBounds(agrega)
+// }, 6000
+// )
+// setTimeout(() => {
+//   polyline.addLatLng(latlngs_ext[2])
+//   const agrega = polyline.getBounds();
+//   map.fitBounds(agrega)
+// }, 9000
+// )
 
-setTimeout(() => {
-  polyline.addLatLng(latlngs_ext[0])
-  const agrega = polyline.getBounds();
-  map.fitBounds(agrega)
-}, 3000
-)
-setTimeout(() => {
-  polyline.addLatLng(latlngs_ext[1])
-  const agrega = polyline.getBounds();
-  map.fitBounds(agrega)
-}, 6000
-)
-setTimeout(() => {
-  polyline.addLatLng(latlngs_ext[2])
-  const agrega = polyline.getBounds();
-  map.fitBounds(agrega)
-}, 9000
-)
+
+const boundsRect = [[-32.8869689020603, -68.8543075227812], [-32.9069689020603, -68.8743075227812]];
+const rectan = L.rectangle(boundsRect, {...path5}).addTo(map);
+
+map.fitBounds(rectan.getBounds())
 
 
+const latlngsPolyg = [
+  [-32.8869689020603, -68.8543075227812],
+  [-32.9269689020603, -68.8743075227812],
+  [-32.8869689020603, -68.8943075227812]
+  // [-32.9269689020603, -68.8943075227812],
+  // [-32.8569689020603, -68.8543075227812]
+];
+
+const polygon = L.polygon(latlngsPolyg, {color: '#0a0a0a'}).addTo(map);
+
+// zoom the map to the polygon
+map.fitBounds(polygon.getBounds());
+
+const poliJson = polygon.toGeoJSON()
+
+console.log(poliJson)
 
 lugares()
 

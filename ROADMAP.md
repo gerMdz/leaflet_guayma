@@ -15,12 +15,12 @@
 
 #### Next
 ##### JS
-[Cap 20](https://www.udemy.com/course/leaflet-crea-mapas-interactivos-para-la-web/learn/lecture/36615482#overview)
+[Cap 23](https://www.udemy.com/course/leaflet-crea-mapas-interactivos-para-la-web/learn/lecture/36617430#overview)
 
 ##### Leaflet
 
 
-[Cap 46](https://www.udemy.com/course/leaflet-crea-mapas-interactivos-para-la-web/learn/lecture/36642048#overview)
+[Cap 47](https://www.udemy.com/course/leaflet-crea-mapas-interactivos-para-la-web/learn/lecture/36642110#overview)
 
 ###### Otras
 [1](https://www.adictosaltrabajo.com/2016/06/22/mapas-interactivos-con-leaflet-js/)
