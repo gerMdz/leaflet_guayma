@@ -1,0 +1,31 @@
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+.content {
+  background-color: darkblue;
+  width: 100%;
+  height: 100%;
+  color: white;
+  font-weight: bold;
+}
+
+.calculator {
+  width: auto;
+  height: auto;
+  border: 1px solid white;
+}
+
+header {
+  background-color: rgba(0, 0, 0, 0.644);
+  text-align: right;
+  padding: 1rem;
+  margin: 0.2rem;
+}
+
+button {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}

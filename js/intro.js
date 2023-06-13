@@ -8,3 +8,5 @@ btn1.addEventListener('click', () => {
   const valorTexto1 = textoInput1.value
   console.log(valorTexto1)
 })
+
+

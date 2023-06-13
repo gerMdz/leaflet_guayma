@@ -129,6 +129,144 @@ const lugares = () => {
   })
 }
 
+const ico = L.icon({
+  iconUrl: '/img/placeholder.png',
+  iconSize: [38, 38],
+  iconAnchor: [19, 38],
+  popupAnchor: [-3, -76],
+});
+
+const marcador_ciudad = L.marker([-32.8869689020603, -68.8543075227812], {
+  icon: ico,
+  draggable: true
+}).addTo(map)
+
+marcador_ciudad.on('dragend', () => {
+  const newCoor = marcador_ciudad.getLatLng();
+  console.log('dd' + newCoor)
+  msj.innerText = `Se movió a
+  Latitud: ${newCoor}
+  `;
+})
+
+
+const path = {
+  stroke: true,
+  color: 'black',
+  width: '3px',
+  fillColor: 'red'
+
+}
+
+const path2 = {
+  stroke: false,
+  color: 'green',
+  width: '1px',
+  fillColor: 'blue',
+  // opacity: 0.8
+
+}
+
+const path3 = {
+  stroke: true,
+  color: 'yellow',
+  width: '1px',
+  fillColor: 'black',
+  opacity: 0
+
+}
+
+const path4 = {
+  stroke: true,
+  color: 'blue',
+  width: '5',
+  opacity: 1,
+  fillColor: 'red',
+  fillOpacity: 0,
+  dashArray: '5, 10'
+
+}
+
+const redondo =  L.circle([-32.89, -68.85], {radius: 200, ...path}).addTo(map);
+// const redondo2 =  L.circle([-32.89, -68.85], {radius: 400, ...path2}).addTo(map);
+
+const donde = redondo.getBounds();
+
+map.fitBounds(donde)
+
+// setTimeout(() => {
+//   redondo.setRadius(100)
+//   redondo.getLanLng()
+//   redondo.setStyle(...path2)
+//
+//
+// }, 3000)
+
+
+redondo.on('mouseover', () => {
+  redondo.setStyle(path2)
+  console.log(path2)
+})
+
+redondo.on('mouseout', () => {
+  redondo.setStyle(path)
+  console.log(path)
+})
+
+
+const marcador_redondo = L.circleMarker([-32.89, -68.85], {radius: 200, ...path3}).addTo(map);
+
+marcador_redondo.setRadius(100)
+
+const latlngs = [
+  [-32.88, -68.84],
+  [-32.90, -68.86],
+
+
+];
+
+const latlngs_ext = [
+  [-32.89, -68.58],
+  [-32.91, -68.78],
+  [-32.89, -68.72],
+];
+
+
+const polyline = L.polyline(latlngs, {
+  // color: 'red',
+  // smoothFactor: 0.5,
+  ...path4,
+
+}).addTo(map);
+
+
+const ext_poly = polyline.getBounds();
+
+map.fitBounds(ext_poly)
+
+
+
+setTimeout(() => {
+  polyline.addLatLng(latlngs_ext[0])
+  const agrega = polyline.getBounds();
+  map.fitBounds(agrega)
+}, 3000
+)
+setTimeout(() => {
+  polyline.addLatLng(latlngs_ext[1])
+  const agrega = polyline.getBounds();
+  map.fitBounds(agrega)
+}, 6000
+)
+setTimeout(() => {
+  polyline.addLatLng(latlngs_ext[2])
+  const agrega = polyline.getBounds();
+  map.fitBounds(agrega)
+}, 9000
+)
+
+
+
 lugares()
 
 
