@@ -300,8 +300,61 @@ map.fitBounds(polygon.getBounds());
 
 const poliJson = polygon.toGeoJSON()
 
-console.log(poliJson)
+// console.log(poliJson)
 
 lugares()
 
+const styleHover= {color: "violet"};
+const styleDefault= {color: "white"};
+const geoLayer = L.geoJSON(geoMapa, {
+  pointToLayer: (feature, latlng) => {
+    return L.circleMarker(latlng, {
+      color: 'red'
+    });
+  },
+  style: (feature) => {
+    const {name} = feature.properties;
+    if(name === 'points'){
+    return {color: 'brown'};
+    }
+  },
+  // filter: (feature) => {
+  //   return ['points', 'lines'].includes(feature.properties.name)
+  // },
+  onEachFeature: (feature, layer) => {
+    layer.on('mouseover', () => {
+        layer.setStyle(styleHover)
+    })
+    layer.on('mouseout', () => {
+        layer.setStyle(styleDefault)
+    })
+    layer.on('click', () => {
+      if(feature.geometry.type === 'Point'){
+        map.setView(layer.getLatLng(), map.getMinZoom())
+      }else {
+        map.fitBounds(layer.getBounds())
+      }
+    })
+  }
+}).addTo(map)
 
+map.fitBounds(geoLayer.getBounds())
+
+
+geoLayer.on('layeradd', (e) => {
+console.log(e)
+  const {layer} = e;
+  map.fitBounds(geoLayer.getBounds())
+
+  layer.setStyle(styleDefault)
+})
+setTimeout(()=> {
+  geoLayer.res
+  geoLayer.addData(otraFeature);
+
+  geoLayer.eachLayer((layer) => {
+    layer.setStyle({color: 'red'})
+  })
+  const layers = geoLayer.getLayers()
+
+}, 3000)
