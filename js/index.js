@@ -139,14 +139,6 @@ const ico = L.icon({
 const marcador_ciudad = L.marker([-32.919909400738334, -68.85367886061664], {
   icon: ico,
   draggable: true
-}).addTo(map)
-
-marcador_ciudad.on('dragend', () => {
-  const newCoor = marcador_ciudad.getLatLng();
-  // console.log('dd' + newCoor)
-  msj.innerText = `Se movió a
-  Latitud: ${newCoor}
-  `;
 })
 
 
@@ -198,12 +190,9 @@ const path5 = {
 
 }
 
-const redondo = L.circle([-32.89, -68.85], {radius: 200, ...path}).addTo(map);
+const redondo = L.circle([-32.89, -68.85], {radius: 200, ...path});
 // const redondo2 =  L.circle([-32.89, -68.85], {radius: 400, ...path2}).addTo(map);
 
-const donde = redondo.getBounds();
-
-map.fitBounds(donde)
 
 // setTimeout(() => {
 //   redondo.setRadius(100)
@@ -225,7 +214,7 @@ redondo.on('mouseout', () => {
 })
 
 
-const marcador_redondo = L.circleMarker([-32.89, -68.85], {radius: 200, ...path3}).addTo(map);
+const marcador_redondo = L.circleMarker([-32.89, -68.85], {radius: 200, ...path3});
 
 marcador_redondo.setRadius(100)
 
@@ -251,7 +240,7 @@ const polyline = L.polyline(latlngs, {
   // smoothFactor: 0.5,
   ...path4,
 
-}).addTo(map);
+});
 
 
 const ext_poly = polyline.getBounds();
@@ -280,7 +269,7 @@ map.fitBounds(ext_poly);
 
 
 const boundsRect = [[-32.8869689020603, -68.8543075227812], [-32.9069689020603, -68.8743075227812]];
-const rectan = L.rectangle(boundsRect, {...path5}).addTo(map);
+const rectan = L.rectangle(boundsRect, {...path5});
 
 map.fitBounds(rectan.getBounds())
 
@@ -293,7 +282,7 @@ const latlngsPolyg = [
   // [-32.8569689020603, -68.8543075227812]
 ];
 
-const polygon = L.polygon(latlngsPolyg, {color: '#0a0a0a'}).addTo(map);
+const polygon = L.polygon(latlngsPolyg, {color: '#0a0a0a'});
 
 // zoom the map to the polygon
 map.fitBounds(polygon.getBounds());
@@ -304,8 +293,8 @@ const poliJson = polygon.toGeoJSON()
 
 lugares()
 
-const styleHover= {color: "violet"};
-const styleDefault= {color: "white"};
+const styleHover = {color: "violet"};
+const styleDefault = {color: "white"};
 const geoLayer = L.geoJSON(geoMapa, {
   pointToLayer: (feature, latlng) => {
     return L.circleMarker(latlng, {
@@ -314,8 +303,8 @@ const geoLayer = L.geoJSON(geoMapa, {
   },
   style: (feature) => {
     const {name} = feature.properties;
-    if(name === 'points'){
-    return {color: 'brown'};
+    if (name === 'points') {
+      return {color: 'brown'};
     }
   },
   // filter: (feature) => {
@@ -323,15 +312,15 @@ const geoLayer = L.geoJSON(geoMapa, {
   // },
   onEachFeature: (feature, layer) => {
     layer.on('mouseover', () => {
-        layer.setStyle(styleHover)
+      layer.setStyle(styleHover)
     })
     layer.on('mouseout', () => {
-        layer.setStyle(styleDefault)
+      layer.setStyle(styleDefault)
     })
     layer.on('click', () => {
-      if(feature.geometry.type === 'Point'){
+      if (feature.geometry.type === 'Point') {
         map.setView(layer.getLatLng(), map.getMinZoom())
-      }else {
+      } else {
         map.fitBounds(layer.getBounds())
       }
     })
@@ -342,13 +331,13 @@ map.fitBounds(geoLayer.getBounds())
 
 
 geoLayer.on('layeradd', (e) => {
-console.log(e)
+  console.log(e)
   const {layer} = e;
   map.fitBounds(geoLayer.getBounds())
 
   layer.setStyle(styleDefault)
 })
-setTimeout(()=> {
+setTimeout(() => {
   geoLayer.res
   geoLayer.addData(otraFeature);
 
@@ -358,3 +347,70 @@ setTimeout(()=> {
   const layers = geoLayer.getLayers()
 
 }, 3000)
+
+
+// LayerGroup
+
+const layerGroup = L.layerGroup().addTo(map);
+
+
+layerGroup.addLayer(marcador_ciudad);
+layerGroup.addLayer(redondo);
+layerGroup.addLayer(marcador_redondo);
+layerGroup.addLayer(polyline);
+layerGroup.addLayer(rectan);
+layerGroup.addLayer(polygon);
+
+
+marcador_ciudad.on('dragend', () => {
+  const newCoor = marcador_ciudad.getLatLng();
+  // console.log('dd' + newCoor)
+  msj.innerText = `Se movió a
+  Latitud: ${newCoor}
+  `;
+})
+
+const donde = redondo.getBounds();
+
+map.fitBounds(donde)
+
+
+// console.log(layerGroup.toGeoJSON())
+//
+// setTimeout(() => {
+//   layerGroup.clearLayers()
+// }, 3000)
+
+// Feature Group
+
+const grupoFeature = L.featureGroup().addTo(map);
+
+// grupoFeature.bindPopup(
+//   "Elemento añadido"
+// )
+
+grupoFeature.addLayer(redondo);
+grupoFeature.addLayer(marcador_redondo);
+grupoFeature.addLayer(polyline);
+grupoFeature.addLayer(rectan);
+grupoFeature.addLayer(polygon);
+
+// grupoFeature.eachLayer(layer => {
+//   layer.on('click', (e) => {
+//     const {latlng} = e;
+//     layer.bindPopup(`
+//     Ubicación:
+//     Latitud: ${latlng.lat}
+//     Longitud: ${latlng.lng}
+//     `).openPopup();
+//   })
+// })
+
+grupoFeature.on('click', (e) => {
+  const {layer, latlng} = e;
+  layer.bindPopup(`
+    Ubicación:
+    Latitud: ${latlng.lat}
+    Longitud: ${latlng.lng}
+    `).openPopup();
+})
