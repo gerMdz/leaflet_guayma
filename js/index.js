@@ -389,11 +389,11 @@ const grupoFeature = L.featureGroup().addTo(map);
 //   "Elemento añadido"
 // )
 
-grupoFeature.addLayer(redondo);
-grupoFeature.addLayer(marcador_redondo);
-grupoFeature.addLayer(polyline);
-grupoFeature.addLayer(rectan);
-grupoFeature.addLayer(polygon);
+// grupoFeature.addLayer(redondo);
+// grupoFeature.addLayer(marcador_redondo);
+// grupoFeature.addLayer(polyline);
+// grupoFeature.addLayer(rectan);
+// grupoFeature.addLayer(polygon);
 
 // grupoFeature.eachLayer(layer => {
 //   layer.on('click', (e) => {
@@ -406,11 +406,43 @@ grupoFeature.addLayer(polygon);
 //   })
 // })
 
-grupoFeature.on('click', (e) => {
-  const {layer, latlng} = e;
-  layer.bindPopup(`
-    Ubicación:
-    Latitud: ${latlng.lat}
-    Longitud: ${latlng.lng}
-    `).openPopup();
+// grupoFeature.on('click', (e) => {
+//   const {layer, latlng} = e;
+//   layer.bindPopup(`
+//     Ubicación:
+//     Latitud: ${latlng.lat}
+//     Longitud: ${latlng.lng}
+//     `).openPopup();
+// })
+
+//
+// const popup = L.popup([-32.8869689020603,-68.8543075227812], {
+//   content: 'Este es el centro de Mendoza Capital',
+//   closeButton: false,
+//   closeOnClick: false
+// })
+
+const my_popup = L.popup();
+
+map.on('click', (e) => {
+  const {latlng} = e;
+console.log(latlng)
+  my_popup
+    .setLatLng(latlng)
+    .setContent(`Estamos en ${latlng}`)
+    .openOn(map)
 })
+
+// marcador_ciudad.bindPopup('<i>Ingreso</i>').openPopup()
+
+// setTimeout(() => {
+//   marcador_ciudad.setPopupContent('Otro contenido')
+// }, 6000)
+
+marcador_ciudad.bindTooltip('<i>Tooltip</i>').openTooltip()
+
+// setTimeout(() => {
+//   marcador_ciudad.setPopupContent('Otro contenido')
+// }, 6000)
+
+
