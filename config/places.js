@@ -20,4 +20,4 @@ const places = [
 
 ]
 
-console.log(places)
+// console.log(places)
