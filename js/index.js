@@ -53,3 +53,9 @@ const marcador3 = L.marker(latlong3)
 marcador1.addTo(map)
 marcador2.addTo(map)
 marcador3.addTo(map)
+
+
+console.log(latlong3.equals(latlong3));
+console.log(latlong2.toString());
+console.log(latlong2.distanceTo(marcador3.getLatLng()));
+console.log(latlong2.toBounds(5));
