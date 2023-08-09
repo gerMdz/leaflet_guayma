@@ -50,12 +50,31 @@ alert('cambio')
 const marcador1 = L.marker(latlong1)
 const marcador2 = L.marker(latlong2)
 const marcador3 = L.marker(latlong3)
-marcador1.addTo(map)
-marcador2.addTo(map)
-marcador3.addTo(map)
+// marcador1.addTo(map)
+// marcador2.addTo(map)
+// marcador3.addTo(map)
 
 
 console.log(latlong3.equals(latlong3));
 console.log(latlong2.toString());
 console.log(latlong2.distanceTo(marcador3.getLatLng()));
-console.log(latlong2.toBounds(5));
+// console.log(latlong2.toBounds(5));
+
+// latLngBounds
+
+const latlngBounds = L.latLngBounds(latlong2, latlong3);
+// const latlngBounds2 = L.latLngBounds([latlong1, latlong3]);
+const latlngBounds2 = L.latLngBounds(bounds);
+
+console.log(latlngBounds2);
+// latlngBounds2.extend(latlngBounds)
+// console.log(latlngBounds2.getCenter());
+
+const [coor1,coor2,coor3,coor4] = [latlngBounds2.getSouthWest(),latlngBounds2.getNorthWest(),latlngBounds2.getSouthEast(),latlngBounds2.getNorthEast()]
+
+L.marker(coor1).addTo(map);
+L.marker(coor2).addTo(map);
+L.marker(coor3).addTo(map);
+L.marker(coor4).addTo(map);
+
+map.fitBounds(latlngBounds2)
