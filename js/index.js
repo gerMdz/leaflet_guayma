@@ -55,9 +55,9 @@ const marcador3 = L.marker(latlong3)
 // marcador3.addTo(map)
 
 
-console.log(latlong3.equals(latlong3));
-console.log(latlong2.toString());
-console.log(latlong2.distanceTo(marcador3.getLatLng()));
+// console.log(latlong3.equals(latlong3));
+// console.log(latlong2.toString());
+// console.log(latlong2.distanceTo(marcador3.getLatLng()));
 // console.log(latlong2.toBounds(5));
 
 // latLngBounds
@@ -66,7 +66,7 @@ const latlngBounds = L.latLngBounds(latlong2, latlong3);
 // const latlngBounds2 = L.latLngBounds([latlong1, latlong3]);
 const latlngBounds2 = L.latLngBounds(bounds);
 
-console.log(latlngBounds2);
+// console.log(latlngBounds2);
 // latlngBounds2.extend(latlngBounds)
 // console.log(latlngBounds2.getCenter());
 
@@ -78,3 +78,20 @@ L.marker(coor3).addTo(map);
 L.marker(coor4).addTo(map);
 
 map.fitBounds(latlngBounds2)
+
+// ##### L.point
+// Valor en pixels de la pantalla
+// L.pint
+
+const punto = L.point(200,300);
+const punto2 = L.point(100,150);
+
+punto.add(punto2)
+punto.scaleBy(punto2)
+
+setTimeout(()=> {
+  map.panBy(punto)
+}, 3000)
+
+
+
