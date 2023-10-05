@@ -70,7 +70,7 @@ const latlngBounds2 = L.latLngBounds(bounds);
 // latlngBounds2.extend(latlngBounds)
 // console.log(latlngBounds2.getCenter());
 
-const [coor1,coor2,coor3,coor4] = [latlngBounds2.getSouthWest(),latlngBounds2.getNorthWest(),latlngBounds2.getSouthEast(),latlngBounds2.getNorthEast()]
+const [coor1,coor2,coor3,coor4, coor5] = [latlngBounds2.getSouthWest(),latlngBounds2.getNorthWest(),latlngBounds2.getSouthEast(),latlngBounds2.getNorthEast(), latlngBounds2.getCenter()]
 
 L.marker(coor1).addTo(map);
 L.marker(coor2).addTo(map);
@@ -94,4 +94,26 @@ setTimeout(()=> {
 }, 3000)
 
 
+// Bounds
+// Recibe tipos Points o array(Points)
 
+const bounds_1 = L.bounds(punto, punto2);
+// console.log(bounds_1)
+// console.log(bounds_1.getCenter())
+// console.log(bounds_1.getSize())
+
+// Icon
+
+const ico_1 = L.icon({
+  iconUrl: './img/sitio.png',
+  iconSize: [38, 38],
+  iconAnchor: [19, 38],
+  popupAnchor: [-3, -50],
+  className: 'p-1 bg-primary'
+});
+
+
+const marker_0510 = L.marker(coor5, {
+  icon: ico_1}).addTo(map);
+
+marker_0510.bindPopup('Leaflet Hello').openPopup()
