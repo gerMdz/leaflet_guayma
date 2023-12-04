@@ -18,3 +18,13 @@ html, body {
 .hidden {
   display: none;
 }
+
+.mi-icon-custom {
+  width: 10px;
+  height: 10px;
+}
+
+.mi-color {
+  color: cadetblue;
+  font-size: 2em;
+}
