@@ -21,11 +21,20 @@ const map = L.map('map', {
 
 
 //Cartografía base
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+const baseLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 30,
   bounds: [
     [-31.93118581140628, -67.47390747070314],
     [-37.98100996893788, -69.47753906250001]
+  ],
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="#!">MPF</a>'
+}).addTo(map);
+
+const delLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 25,
+  bounds: [
+    [-32.43118581140628, -67.67390747070314],
+    [-37.48100996893788, -69.67753906250001]
   ],
   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="#!">MPF</a>'
 }).addTo(map);
@@ -41,8 +50,49 @@ const control = L.control.zoom({
   position: 'bottomright'
 }).addTo(map)
 
-console.log(control.getPosition());
+// console.log(control.getPosition());
 
 setTimeout(() => {
   control.setPosition('topright')
 }, 3000)
+
+
+// attribution
+
+const attribution = L.control.attribution([
+  prefix= 'MPF',
+
+]).addTo(map)
+
+// setTimeout(() => {
+//   position = 'bottomleft'
+//   attribution.setPrefix('Ministerio Público Fiscal');
+//   attribution.addAttribution('Sistemas')
+//   attribution.removeAttribution('MPF')
+//
+// }, 2000)
+
+
+// map.setView([-31.93118581140628, -67.47390747070314], 36);
+
+const marcador6 = L.marker([-31.93118581140628, -67.47390747070314]).addTo(map);
+const marcador7 = L.marker([-32.43118581140628, -67.67390747070314])
+
+const overlays = {
+ "Marcador One": marcador6,
+ "Marcador Two": marcador7,
+
+}
+
+const baseMaps = {
+  'Ministerio': baseLayer,
+  'Del': delLayer
+
+}
+
+const controlLayer = L.control.layers(baseMaps, overlays,{
+  collapsed: false,
+  position: 'topleft'
+}).addTo(map)
+
+
