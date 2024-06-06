@@ -10,9 +10,38 @@ html, body {
   height: 100%
 }
 
+#sidebar {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #222222;
+  width: 30%;
+  height: 100%;
+  color: white;
+  font-weight: bold;
+  max-height: 100%;
+  overflow-y: auto;
+  font-size: 0.7em;
+}
+
 #sidebar li:hover {
   cursor: pointer;
   font-weight: bold;
+}
+
+form {
+  position: absolute;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  background-color: #222222;
+  border: 1px solid;
+  border-radius: 10px;
+  z-index: 1000;
+  color: white;
+  padding: 1rem;
+  margin: 0.5rem;
+
 }
 
 .hidden {
