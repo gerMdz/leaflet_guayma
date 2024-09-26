@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>geoJsonMap</title>
+  <title>GeoJsonMap</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -42,7 +42,7 @@
 
 <form>
   <select class="form-select" aria-label="Default select example">
-    <option selected disabled>Elegir entidad</option>
+    <option selected value="">Elegir entidad</option>
     <option value="marker">Marcador</option>
     <option value="circleMarker">Círculo</option>
     <option value="polyline">Línea</option>
@@ -56,13 +56,13 @@
       </label>
       <input id="checkbox" type="checkbox" role="switch" class="form-check-input"/>
     </div>
-    <button type="button" class="btn btn-secondary float-end">
+    <button type="button" id="btn-add" class="btn btn-secondary float-end">
       Agregar
     </button>
   </div>
 </form>
 
-<div id="sidebar" class="d-flex flex-column justify-content-center col-3 h-100 p-2">
+<div id="sidebar" class="d-flex justify-content-center align-items-center col-3 h-100 p-2">
   <div class="alert alert-primary w-100 fw-bold hidden" role="alert" id="msj">
 
   </div>
@@ -76,27 +76,10 @@
         crossorigin="anonymous"></script>
 <script src="js/vendor/modernizr-3.11.2.min.js"></script>
 <script src="js/plugins.js"></script>
-<!--  <script src="js/main.js"></script>-->
-
-
-<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-<script>
-  window.ga = function () {
-    ga.q.push(arguments)
-  };
-  ga.q = [];
-  ga.l = +new Date;
-  ga('create', 'UA-XXXXX-Y', 'auto');
-  ga('set', 'anonymizeIp', true);
-  ga('set', 'transport', 'beacon');
-  ga('send', 'pageview')
-</script>
-<script src="https://www.google-analytics.com/analytics.js" async></script>
-
 <script src="config/places.js"></script>
 <script src="js/geoJson.js"></script>
+<script src="js/map_72.js"></script>
 <script src="js/index.js"></script>
-
 </body>
 
 </html>
